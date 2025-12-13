@@ -45,5 +45,5 @@ npm run dev (L'application s'ouvrira via le lien affiché http://localhost:5173)
 
 ### Étape Finale : Démo rapides
 
-si role admin : patron@kiloutou.fr (email), admin (password) [Peut Supprimer du matériel et créer des réservations.]
+si role admin : patron@zeggane.fr (email), admin (password) [Peut Supprimer du matériel et créer des réservations.]
 si role user :  vous devez créer votre compte et ainsi vous connecter à la plateforme ou vous pouvez Réserver du matériel et voir uniquement ses réservations.

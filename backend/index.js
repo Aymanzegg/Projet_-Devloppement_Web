@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { connection } = require('./lib/db');
 
-// Import des routes
+
 const authRoutes = require('./routes/auth');
 const materialRoutes = require('./routes/material');
 const reservationRoutes = require('./routes/reservation');
@@ -14,13 +14,11 @@ const Reservation = require('./models/reservation');
 const UsageLog = require('./models/usageLog');
 
 
-
 Material.hasMany(Reservation);
 Reservation.belongsTo(Material);
 
 User.hasMany(Reservation, { foreignKey: 'clientName' });
 Reservation.belongsTo(User, { foreignKey: 'clientName' });
-
 
 const app = express();
 
@@ -35,7 +33,16 @@ app.use('/api/reservations', reservationRoutes);
 app.get('/', (req, res) => res.send('API running'));
 
 
-connection.sync({ alter: true }).then(() => {
-    console.log('✅ Database synced & Associations OK');
-    app.listen(3000, () => console.log('🚀 Server started on port 3000'));
-});
+const startServer = async () => {
+    try {
+        
+        await connection.sync(); 
+        
+        console.log('✅ Database synced & Associations OK');
+        app.listen(3000, () => console.log('🚀 Server started on port 3000'));
+    } catch (error) {
+        console.error('❌ Erreur au démarrage :', error);
+    }
+};
+
+startServer();
